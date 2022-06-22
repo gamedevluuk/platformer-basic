@@ -21,6 +21,8 @@ public class PlayerInput : MonoBehaviour
     bool isJumping = false;
     bool isWalking = false;
     bool hasDoubleJumped = false;
+    
+    public bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerID == 1)
+        if (playerID == 1 && !isDead)
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -56,7 +58,7 @@ public class PlayerInput : MonoBehaviour
                 else
                     DoubleJump();
         }
-        else if (playerID == 2)
+        else if (playerID == 2 && !isDead)
         {
             if (Input.GetKey(KeyCode.J))
             {
@@ -84,7 +86,7 @@ public class PlayerInput : MonoBehaviour
                     DoubleJump();
         }
 
-        if (!IsStandingOnObject())
+        if (!IsStandingOnObject() && !isDead)
         {
             isJumping = true;
             animator.SetBool("IsJumping", true);
@@ -168,6 +170,18 @@ public class PlayerInput : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void DisableControls()
+    {
+        isDead = true;
+        animator.SetBool("IsJumping", false);
+        animator.SetBool("IsWalking", false);
+
+    }
+    public void EnableControls()
+    {
+        isDead = false;
     }
 
 }

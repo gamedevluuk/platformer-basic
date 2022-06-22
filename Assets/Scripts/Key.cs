@@ -12,7 +12,7 @@ public class Key : MonoBehaviour
         {
             GetComponent<CircleCollider2D>().enabled = false;
 
-            collision.GetComponent<PlayerInventory>().AddKey();
+            collision.transform.parent.GetComponent<PlayerInventory>().AddKey();
 
             transform.DOMove(collision.transform.position, .3f);
             transform.DOScale(0, .3f);

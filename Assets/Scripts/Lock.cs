@@ -9,7 +9,7 @@ public class Lock : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            PlayerInventory inventory = collision.GetComponent<PlayerInventory>();
+            PlayerInventory inventory = collision.transform.parent.GetComponent<PlayerInventory>();
             if (inventory.ConsumeKey())
             {
                 OpenLock();
@@ -21,3 +21,4 @@ public class Lock : MonoBehaviour
         gameObject.SetActive(false);
     }
 }
+    
